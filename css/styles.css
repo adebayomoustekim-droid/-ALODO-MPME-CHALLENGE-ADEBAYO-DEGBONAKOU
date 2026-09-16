@@ -1,0 +1,1244 @@
+/* ==========================================================================
+   Diagnostic ALODO MPME — feuille de style
+
+   Approche « mobile d'abord » : les styles de base visent un téléphone,
+   les @media (min-width: …) en fin de fichier adaptent l'affichage aux grands écrans.
+
+   Sommaire
+   1. Variables          6. Écran d'introduction
+   2. Base               7. Écran des questions
+   3. Mise en page       8. Écran de résultat
+   4. En-tête            9. Grands écrans
+   5. Boutons, champs   10. Animations réduites et impression
+   ========================================================================== */
+
+
+/* 1. Variables (couleurs, arrondis, ombres réutilisés partout)
+   -------------------------------------------------------------------------- */
+:root {
+  --color-brand: #0b5d4b;
+  --color-brand-strong: #084638;
+  --color-brand-soft: #e4f1ec;
+  --color-accent: #e9a23b;
+  --color-accent-soft: #fdf2df;
+
+  --color-bg: #f5f3ee;
+  --color-surface: #ffffff;
+  --color-surface-muted: #faf8f4;
+  --color-text: #17201c;
+  --color-muted: #56615c;
+  --color-border: #e1ddd3;
+  --color-border-strong: #c5bfb2;
+
+  --color-danger: #b42318;
+  --color-danger-soft: #fdecea;
+  --color-whatsapp: #128c4a;
+
+  /* Couleurs des niveaux : graphique (barre, cercle) + texte lisible */
+  --level-fragile: #d0501a;
+  --level-fragile-ink: #9a3412;
+  --level-building: #d99a1e;
+  --level-building-ink: #8a5a00;
+  --level-structured: #14877b;
+  --level-structured-ink: #0f5f57;
+  --level-ready: #1f9d55;
+  --level-ready-ink: #166534;
+
+  /* Couleurs des dimensions */
+  --dim-formalisation: #5b5bd6;
+  --dim-finance: #0b5d4b;
+  --dim-digitalisation: #c0620f;
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(23, 32, 28, 0.06);
+  --shadow-md: 0 10px 30px rgba(23, 32, 28, 0.08);
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --tap-size: 52px; /* taille minimale confortable pour un doigt */
+  --gutter: 16px;
+}
+
+
+/* 2. Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Un élément avec l'attribut hidden est toujours caché, même s'il a un display */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3, p, ul, ol {
+  margin: 0;
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+button, input {
+  font: inherit;
+  color: inherit;
+}
+
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.noscript {
+  padding: 24px var(--gutter);
+  text-align: center;
+}
+
+
+/* 3. Mise en page
+   -------------------------------------------------------------------------- */
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  animation: screen-in 0.25s ease-out;
+}
+
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.container {
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container-wide {
+  max-width: 920px;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.button-row-split > .btn {
+  flex: 1 1 0;
+}
+
+.card {
+  padding: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.section-title {
+  margin-bottom: 14px;
+  font-size: 1.125rem;
+  line-height: 1.3;
+}
+
+.section-lead {
+  margin: -8px 0 14px;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+
+/* 4. En-tête avec le logo
+   -------------------------------------------------------------------------- */
+.brand-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  max-width: 920px;
+  margin-inline: auto;
+  padding: calc(14px + env(safe-area-inset-top, 0px)) var(--gutter) 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--color-brand);
+  color: #fff;
+  font-weight: 800;
+}
+
+.brand-name strong {
+  color: var(--color-brand);
+}
+
+.brand-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-align: right;
+}
+
+
+/* 5. Boutons et champs
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap-size);
+  padding: 12px 20px;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--color-brand-strong);
+}
+
+.btn-secondary {
+  background: var(--color-surface);
+  border-color: var(--color-border-strong);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-brand);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.btn-ghost.is-armed {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+  text-decoration: none;
+}
+
+.btn-whatsapp {
+  background: var(--color-whatsapp);
+  color: #fff;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.field-optional {
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+.text-input,
+.number-input {
+  width: 100%;
+  min-height: var(--tap-size);
+  padding: 12px 14px;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-size: 1rem; /* 16px minimum : évite le zoom automatique sur iPhone */
+}
+
+.text-input:focus,
+.number-input:focus {
+  border-color: var(--color-brand);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-brand-soft);
+}
+
+.field-error {
+  margin-top: 14px;
+  font-weight: 600;
+  color: var(--color-danger);
+}
+
+.field-error:empty {
+  display: none;
+}
+
+
+/* 6. Écran d'introduction
+   -------------------------------------------------------------------------- */
+.intro-main {
+  padding-top: 12px;
+  padding-bottom: 32px;
+}
+
+/* Espace régulier entre les blocs de l'accueil */
+.intro-main > * + * {
+  margin-top: 32px;
+}
+
+.hero-title {
+  margin-top: 8px;
+  font-size: clamp(1.75rem, 7vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.hero-lead {
+  margin-top: 12px;
+  font-size: 1.05rem;
+  color: var(--color-muted);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.fact strong {
+  font-size: 1.25rem;
+  color: var(--color-brand);
+}
+
+.fact span {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.resume-panel {
+  padding: 16px;
+  background: var(--color-accent-soft);
+  border: 1px solid #f1d29b;
+  border-radius: var(--radius-lg);
+}
+
+.resume-title {
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.start-form {
+  padding: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.start-form .btn {
+  margin-top: 14px;
+}
+
+.privacy-note {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.dimension-cards {
+  display: grid;
+  gap: 10px;
+}
+
+.dimension-card {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--dim-color);
+  border-radius: var(--radius-md);
+}
+
+.dimension-index {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-surface-muted);
+  font-weight: 700;
+  color: var(--dim-color);
+}
+
+.dimension-name {
+  font-size: 1rem;
+}
+
+.dimension-measures {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.dimension-why {
+  margin-top: 6px;
+  font-size: 0.9rem;
+}
+
+/* Chaque dimension a sa couleur, réutilisée par les cartes et les étiquettes */
+.dim-formalisation { --dim-color: var(--dim-formalisation); }
+.dim-finance { --dim-color: var(--dim-finance); }
+.dim-digitalisation { --dim-color: var(--dim-digitalisation); }
+
+.how-steps {
+  display: grid;
+  gap: 12px;
+  counter-reset: step;
+}
+
+.how-steps li {
+  position: relative;
+  padding-left: 40px;
+  color: var(--color-muted);
+  counter-increment: step;
+}
+
+/* Numéro dans une pastille, généré en CSS */
+.how-steps li::before {
+  content: counter(step);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-brand-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.how-steps strong {
+  color: var(--color-text);
+}
+
+.site-footer {
+  margin-top: auto;
+  padding: 20px var(--gutter) calc(20px + env(safe-area-inset-bottom, 0px));
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* Frise du programme : défile horizontalement sur petit écran */
+.timeline-scroll {
+  overflow-x: auto;
+  padding: 4px 0 8px;
+}
+
+.timeline {
+  display: flex;
+  min-width: max-content;
+}
+
+.timeline-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 104px;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* Trait qui relie les étapes */
+.timeline-step::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--color-border);
+}
+
+.timeline-step:first-child::before {
+  display: none;
+}
+
+.timeline-dot {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-border-strong);
+  border-radius: 50%;
+  background: var(--color-surface);
+}
+
+.timeline-step.is-done::before,
+.timeline-step.is-active::before {
+  background: var(--color-brand);
+}
+
+.timeline-step.is-done .timeline-dot {
+  border-color: var(--color-brand);
+  background: var(--color-brand);
+}
+
+.timeline-step.is-active {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.timeline-step.is-active .timeline-dot {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 4px var(--color-brand-soft);
+}
+
+.timeline-badge {
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  font-size: 0.72rem;
+  color: #8a5a00;
+}
+
+
+/* 7. Écran des questions
+   -------------------------------------------------------------------------- */
+.question-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: calc(14px + env(safe-area-inset-top, 0px)) 0 14px;
+  background: rgba(245, 243, 238, 0.96);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.question-counter {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.progress-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+}
+
+.progress-fill {
+  width: 10%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-brand);
+  transition: width 0.3s ease;
+}
+
+.question-form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.question-main {
+  flex: 1;
+  padding-block: 20px 24px;
+}
+
+.question-legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+}
+
+.dimension-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  border: 1px solid var(--dim-color, var(--color-border));
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--dim-color, var(--color-text));
+}
+
+.question-title {
+  display: block;
+  margin-top: 12px;
+  font-size: clamp(1.3rem, 5.5vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.question-help {
+  margin: 8px 0 18px;
+  color: var(--color-muted);
+}
+
+/* Barre des boutons collée en bas de l'écran sur mobile */
+.question-footer {
+  position: sticky;
+  bottom: 0;
+  padding: 12px 0 calc(12px + env(safe-area-inset-bottom, 0px));
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  box-shadow: 0 -6px 20px rgba(23, 32, 28, 0.05);
+}
+
+/* Réponses : toute la carte est cliquable (c'est un <label>) */
+.options {
+  display: grid;
+  gap: 10px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: var(--tap-size);
+  padding: 14px 16px;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.option:hover {
+  border-color: var(--color-border-strong);
+}
+
+/* Le vrai bouton radio / case à cocher est invisible mais reste utilisable
+   au clavier et par les lecteurs d'écran. On dessine le nôtre à côté. */
+.option input,
+.scale-step input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.option-indicator {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--color-border-strong);
+  background: var(--color-surface);
+  transition: all 0.15s;
+}
+
+.option input[type="radio"] + .option-indicator {
+  border-radius: 50%;
+}
+
+.option input[type="checkbox"] + .option-indicator {
+  border-radius: 6px;
+}
+
+/* Carte de la réponse choisie */
+.option:has(input:checked) {
+  border-color: var(--color-brand);
+  background: var(--color-brand-soft);
+}
+
+.option input:checked + .option-indicator {
+  border-color: var(--color-brand);
+  background: var(--color-brand);
+}
+
+.option input[type="radio"]:checked + .option-indicator {
+  box-shadow: inset 0 0 0 4px var(--color-surface);
+}
+
+/* Coche dessinée en CSS */
+.option input[type="checkbox"]:checked + .option-indicator::after {
+  content: "";
+  width: 6px;
+  height: 11px;
+  margin-top: -2px;
+  border: solid #fff;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+.option input:focus-visible + .option-indicator,
+.scale-step input:focus-visible + span {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Champ nombre */
+.number-wrap {
+  position: relative;
+  max-width: 260px;
+}
+
+.number-input {
+  padding-right: 64px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.number-unit {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  color: var(--color-muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.chip {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+/* Échelle de 1 à 5 */
+.scale-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.scale-step {
+  position: relative;
+  cursor: pointer;
+}
+
+.scale-step span {
+  display: grid;
+  place-items: center;
+  height: 56px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: all 0.15s;
+}
+
+.scale-step:hover span {
+  border-color: var(--color-border-strong);
+}
+
+.scale-step input:checked + span {
+  border-color: var(--color-brand);
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.scale-ends {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.scale-ends span:last-child {
+  text-align: right;
+}
+
+
+/* 8. Écran de résultat
+   -------------------------------------------------------------------------- */
+.result-layout {
+  display: grid;
+  gap: 16px;
+  padding-top: 4px;
+  padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Sans min-width: 0, un contenu large (la frise) élargirait la grille sur mobile */
+.result-layout > *,
+.findings-grid > * {
+  min-width: 0;
+}
+
+/* La classe de niveau (ajoutée par score.js) choisit la couleur */
+.level-fragile { --level-color: var(--level-fragile); --level-ink: var(--level-fragile-ink); }
+.level-building { --level-color: var(--level-building); --level-ink: var(--level-building-ink); }
+.level-structured { --level-color: var(--level-structured); --level-ink: var(--level-structured-ink); }
+.level-ready { --level-color: var(--level-ready); --level-ink: var(--level-ready-ink); }
+
+.score-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 5px solid var(--level-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+/* Cercle du score, 100 % CSS : un dégradé conique rempli à --score %
+   (la variable --score est donnée par score.js) */
+.score-circle {
+  position: relative;
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  background: conic-gradient(var(--level-color) calc(var(--score, 0) * 1%), var(--color-border) 0);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Rond blanc au centre qui transforme le disque en anneau */
+.score-circle::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  background: var(--color-surface);
+}
+
+.score-circle-text {
+  position: relative;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.score-circle-text small {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--color-muted);
+}
+
+.result-title {
+  margin-top: 4px;
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.level-badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-muted);
+  border: 1.5px solid var(--level-color);
+  font-weight: 700;
+  color: var(--level-ink);
+}
+
+.result-summary {
+  margin-top: 12px;
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+.dimension-bars {
+  display: grid;
+  gap: 16px;
+}
+
+.dimension-bar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.dimension-bar-score {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+.dimension-bar-score strong {
+  font-size: 1.15rem;
+  color: var(--color-text);
+}
+
+.bar-track {
+  height: 12px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+}
+
+.bar-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--level-color);
+  transition: width 0.8s ease;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.dimension-bar-level {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--level-ink);
+}
+
+.alert {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-left: 4px solid var(--color-danger);
+  border-radius: var(--radius-sm);
+  background: var(--color-danger-soft);
+  font-size: 0.92rem;
+}
+
+.findings-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.finding-list {
+  display: grid;
+  gap: 12px;
+}
+
+.finding {
+  display: flex;
+  gap: 12px;
+}
+
+.finding-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.finding-strength .finding-icon {
+  background: #dcfce7;
+  color: var(--level-ready-ink);
+}
+
+.finding-weakness .finding-icon {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+.finding-dimension {
+  margin-top: 2px;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.empty-text {
+  color: var(--color-muted);
+}
+
+.card-highlight {
+  border: 1.5px solid var(--color-brand);
+  background: linear-gradient(180deg, var(--color-brand-soft) 0, var(--color-surface) 140px);
+}
+
+.recommendations {
+  display: grid;
+  gap: 12px;
+}
+
+.recommendation {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.recommendation-rank {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  font-weight: 800;
+  color: #fff;
+}
+
+.recommendation-title {
+  margin-top: 8px;
+  font-size: 1.05rem;
+}
+
+.recommendation-action {
+  margin-top: 4px;
+}
+
+.recommendation-reason {
+  margin-top: 8px;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+}
+
+.indicator-card {
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--color-brand-strong);
+  color: #fff;
+}
+
+.indicator-card .eyebrow {
+  color: var(--color-accent);
+}
+
+.indicator-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.indicator-title {
+  margin-top: 2px;
+  font-size: 1.15rem;
+}
+
+.indicator-score {
+  font-size: 0.95rem;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.indicator-score strong {
+  font-size: 1.8rem;
+}
+
+.indicator-status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.14);
+  font-weight: 700;
+}
+
+.indicator-description {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.result-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.disclaimer {
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+
+/* 9. Grands écrans (tablette, ordinateur)
+   -------------------------------------------------------------------------- */
+@media (min-width: 640px) {
+  :root {
+    --gutter: 24px;
+  }
+
+  .card,
+  .start-form {
+    padding: 24px;
+  }
+
+  .score-hero {
+    flex-direction: row;
+    gap: 32px;
+    padding: 32px;
+    text-align: left;
+  }
+
+  .result-title {
+    font-size: 1.6rem;
+  }
+
+  .result-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .button-row-split {
+    justify-content: space-between;
+  }
+
+  .button-row-split > .btn {
+    flex: 0 1 200px;
+  }
+}
+
+@media (min-width: 860px) {
+  .findings-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .result-actions {
+    grid-template-columns: repeat(4, auto);
+    justify-content: start;
+  }
+
+  .question-main {
+    padding-top: 40px;
+  }
+}
+
+
+/* 10. Animations réduites et impression (bouton « Enregistrer en PDF »)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .no-print,
+  .timeline-scroll {
+    display: none !important;
+  }
+
+  .screen {
+    min-height: auto;
+    animation: none;
+  }
+
+  .card,
+  .score-hero,
+  .recommendation {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .indicator-card {
+    border: 1px solid var(--color-border);
+    background: #fff;
+    color: var(--color-text);
+  }
+}
