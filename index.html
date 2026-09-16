@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Diagnostic ALODO MPME : mesurez en 5 minutes la maturité de votre entreprise (formalisation, finance, digitalisation) et recevez des recommandations concrètes.">
+  <meta name="theme-color" content="#0B5D4B">
+  <title>Diagnostic ALODO MPME</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B5D4B'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='36' font-weight='700' fill='%23fff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- =====================================================================
+       ÉCRAN 1 — INTRODUCTION
+       ===================================================================== -->
+  <div id="screen-intro" class="screen">
+    <header class="brand-bar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span class="brand-name">ALODO <strong>MPME</strong></span>
+      </div>
+      <span class="brand-subtitle">Diagnostic de maturité</span>
+    </header>
+
+    <main class="container intro-main">
+      <section class="hero">
+        <p class="eyebrow">Programme ALODO MPME</p>
+        <h1 class="hero-title">Où en est vraiment votre entreprise&nbsp;?</h1>
+        <p class="hero-lead">
+          En 10 questions, mesurez la structuration de votre MPME sur 3 piliers
+          qui conditionnent sa croissance et son accès au financement.
+        </p>
+        <ul class="facts">
+          <li class="fact"><strong>≈ 5 min</strong><span>durée</span></li>
+          <li class="fact"><strong>10</strong><span>questions</span></li>
+          <li class="fact"><strong>3</strong><span>dimensions</span></li>
+        </ul>
+      </section>
+
+      <!-- Affiché par app.js uniquement si un diagnostic est sauvegardé -->
+      <section id="resume-panel" class="resume-panel" hidden>
+        <p id="resume-text" class="resume-title"></p>
+        <div class="button-row">
+          <button type="button" id="btn-resume" class="btn btn-primary">Reprendre où j’en étais</button>
+          <button type="button" id="btn-reset-saved" class="btn btn-ghost">Recommencer à zéro</button>
+        </div>
+      </section>
+
+      <form id="start-form" class="start-form">
+        <label class="field-label" for="company-name">
+          Nom de votre entreprise <span class="field-optional">(facultatif)</span>
+        </label>
+        <input id="company-name" class="text-input" type="text" maxlength="60"
+               autocomplete="organization" placeholder="Ex. : Boutique Chez Adjoa">
+        <button type="submit" class="btn btn-primary btn-block">Commencer le diagnostic</button>
+        <p class="privacy-note">Vos réponses restent sur votre téléphone : rien n’est envoyé sur Internet.</p>
+      </form>
+
+      <section>
+        <h2 class="section-title">Ce que nous évaluons</h2>
+        <ul class="dimension-cards">
+          <li class="dimension-card dim-formalisation">
+            <span class="dimension-index" aria-hidden="true">1</span>
+            <div>
+              <h3 class="dimension-name">Formalisation</h3>
+              <p class="dimension-measures">Statut légal, documents administratifs, séparation pro/perso</p>
+              <p class="dimension-why">Sans existence légale ni documents : pas de banque, pas de grands clients, pas de financement.</p>
+            </div>
+          </li>
+          <li class="dimension-card dim-finance">
+            <span class="dimension-index" aria-hidden="true">2</span>
+            <div>
+              <h3 class="dimension-name">Finance</h3>
+              <p class="dimension-measures">Suivi des ventes et dépenses, bénéfice, trésorerie, historique</p>
+              <p class="dimension-why">Des chiffres fiables sont la base de toute décision et de toute demande de crédit.</p>
+            </div>
+          </li>
+          <li class="dimension-card dim-digitalisation">
+            <span class="dimension-index" aria-hidden="true">3</span>
+            <div>
+              <h3 class="dimension-name">Digitalisation</h3>
+              <p class="dimension-measures">Paiements numériques, WhatsApp, outils de gestion</p>
+              <p class="dimension-why">Chaque paiement numérique laisse une trace : c’est ce qui transforme l’activité en données.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-title">Comment ça marche</h2>
+        <ol class="how-steps">
+          <li><strong>Répondez simplement.</strong> Il n’y a ni bonne ni mauvaise réponse : décrivez la situation réelle de votre entreprise.</li>
+          <li><strong>Obtenez votre score.</strong> Un score sur 100, global et par dimension, calculé immédiatement.</li>
+          <li><strong>Passez à l’action.</strong> Vos points forts, vos points à améliorer et 3 actions prioritaires concrètes.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 class="section-title">Votre place dans le programme</h2>
+        <div class="timeline-scroll">
+          <ol class="timeline">
+            <li class="timeline-step is-done"><span class="timeline-dot"></span>Candidature</li>
+            <li class="timeline-step is-done"><span class="timeline-dot"></span>Sélection</li>
+            <li class="timeline-step is-active" aria-current="step"><span class="timeline-dot"></span>Diagnostic<span class="timeline-badge">Vous êtes ici</span></li>
+            <li class="timeline-step"><span class="timeline-dot"></span>Analyse</li>
+            <li class="timeline-step"><span class="timeline-dot"></span>Rapport</li>
+            <li class="timeline-step"><span class="timeline-dot"></span>Recommandations</li>
+            <li class="timeline-step"><span class="timeline-dot"></span>Accompagnement</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">Prototype — ALODO TECH · Cotonou</footer>
+  </div>
+
+
+  <!-- =====================================================================
+       ÉCRAN 2 — QUESTIONS
+       Une seule question est visible à la fois (les autres ont « hidden »).
+
+       Sur chaque question (<fieldset class="question">) :
+         data-dimension  → dimension de la question
+         data-weight     → importance dans la dimension (1 à 3)
+         data-readiness  → poids dans l'indicateur « Préparation au financement »
+         data-strength / data-weakness → textes affichés dans le résultat
+         data-action-title / data-action-text → recommandation associée
+       Sur chaque réponse, value = nombre de points (de 0 à 100).
+       ===================================================================== -->
+  <div id="screen-questions" class="screen" hidden>
+    <header class="question-header">
+      <div class="container">
+        <p id="progress-text" class="question-counter">Question 1 sur 10</p>
+        <div id="progress-bar" class="progress-track" role="progressbar"
+             aria-label="Progression du diagnostic" aria-valuemin="1" aria-valuemax="10" aria-valuenow="1">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+      </div>
+    </header>
+
+    <form id="diagnostic-form" class="question-form" novalidate>
+      <main class="container question-main">
+
+        <!-- ------------------------- FORMALISATION ------------------------- -->
+
+        <!-- Question 1 — choix unique -->
+        <fieldset class="question" data-dimension="formalisation" data-weight="3" data-readiness="2"
+          data-strength="Votre entreprise a une existence légale reconnue."
+          data-weakness="L’absence d’enregistrement légal ferme l’accès aux banques, aux marchés et aux financements."
+          data-action-title="Formaliser votre activité"
+          data-action-text="Enregistrez l’entreprise au RCCM sur la plateforme en ligne de l’APIEx (monentreprise.bj). L’entreprise individuelle est la forme la plus simple pour commencer.">
+          <legend class="question-legend" tabindex="-1">
+            <span class="dimension-chip dim-formalisation">Formalisation · 1/3</span>
+            <span class="question-title">Quelle est la situation juridique de votre entreprise ?</span>
+          </legend>
+          <p class="question-help">Le statut conditionne vos obligations, mais aussi votre accès aux banques et aux marchés.</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="legal_status" value="0"><span class="option-indicator"></span><span>Pas encore enregistrée (activité informelle)</span></label>
+            <label class="option"><input type="radio" name="legal_status" value="30"><span class="option-indicator"></span><span>Démarches d’enregistrement en cours</span></label>
+            <label class="option"><input type="radio" name="legal_status" value="75"><span class="option-indicator"></span><span>Entreprise individuelle enregistrée au RCCM</span></label>
+            <label class="option"><input type="radio" name="legal_status" value="100"><span class="option-indicator"></span><span>Société enregistrée (SARL, SASU, SA…)</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Question 2 — choix multiple (les points s'additionnent, 100 au maximum) -->
+        <fieldset class="question" data-dimension="formalisation" data-weight="2" data-readiness="1" hidden
+          data-strength="Vos documents administratifs sont en ordre."
+          data-weakness="Plusieurs documents administratifs manquent, alors qu’ils sont exigés par les banques et les grands clients."
+          data-action-title="Constituer votre dossier administratif"
+          data-action-text="Rassemblez RCCM, IFU et attestations fiscales dans un dossier unique (papier + photos sur le téléphone). Commencez par l’IFU, indispensable pour facturer une entreprise.">
+          <legend class="question-legend" tabindex="-1">
+            <span class="dimension-chip dim-formalisation">Formalisation · 2/3</span>
+            <span class="question-title">Parmi ces documents, lesquels avez-vous à jour ?</span>
+          </legend>
+          <p class="question-help">Cochez tout ce qui s’applique.</p>
+          <div class="options">
+            <label class="option"><input type="checkbox" name="admin_documents" value="25"><span class="option-indicator"></span><span>Registre du commerce (RCCM)</span></label>
+            <label class="option"><input type="checkbox" name="admin_documents" value="25"><span class="option-indicator"></span><span>Numéro IFU (identifiant fiscal)</span></label>
+            <label class="option"><input type="checkbox" name="admin_documents" value="20"><span class="option-indicator"></span><span>Déclarations fiscales à jour</span></label>
+            <label class="option"><input type="checkbox" name="admin_documents" value="15"><span class="option-indicator"></span><span>Immatriculation CNSS</span></label>
+            <label class="option"><input type="checkbox" name="admin_documents" value="15"><span class="option-indicator"></span><span>Contrats écrits avec clients ou fournisseurs</span></label>
+            <label class="option"><input type="checkbox" name="admin_documents" value="0" data-exclusive><span class="option-indicator"></span><span>Aucun de ces documents</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Question 3 — choix unique (value="0" déclenche la règle de plafond Finance) -->
+        <fieldset class="question" data-dimension="formalisation" data-weight="3" data-readiness="2" hidden
+          data-strength="L’argent de l’entreprise est séparé de l’argent personnel : la rentabilité réelle est mesurable."
+          data-weakness="Argent personnel et professionnel pas assez séparés : difficile de savoir si l’activité est réellement rentable."
+          data-action-title="Séparer l’argent pro et perso"
+          data-action-text="Ouvrez un compte Mobile Money ou bancaire réservé à l’entreprise et fixez-vous une rémunération mensuelle, au lieu de puiser dans la caisse.">
+          <legend class="question-legend" tabindex="-1">
+            <span class="dimension-chip dim-formalisation">Formalisation · 3/3</span>
+            <span class="question-title">L’argent de l’entreprise est-il séparé de votre argent personnel ?</span>
+          </legend>
+          <p class="question-help">C’est l’un des premiers freins à la croissance d’une MPME.</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="money_separation" value="0"><span class="option-indicator"></span><span>Non, c’est la même caisse ou le même compte</span></label>
+            <label class="option"><input type="radio" name="money_separation" value="40"><span class="option-indicator"></span><span>En partie : je note quand je prends de l’argent</span></label>
+            <label class="option"><input type="radio" name="money_separation" value="60"><span class="option-indicator"></span><span>Oui, mais je puise souvent dans la caisse</span></label>
+            <label class="option"><input type="radio" name="money_separation" value="100"><span class="option-indicator"></span><span>Oui, totalement : je me verse un montant fixe</span></label>
+          </div>
+        </fieldset>
+
+        <!-- ----------------------------- FINANCE ----------------------------- -->
+
+        <!-- Question 4 — choix unique -->
+        <fieldset class="question" data-dimension="finance" data-weight="3" hidden
+          data-strength="Vos ventes et dépenses sont suivies régulièrement."
+          data-weakness="Les ventes et dépenses ne sont pas enregistrées régulièrement : les décisions reposent sur l’intuition."
+          data-action-title="Tenir un cahier de caisse quotidien"
+          data-action-text="Chaque soir, notez en 5 minutes les entrées et sorties de la journée. Au bout d’un mois, vous connaîtrez votre vrai chiffre d’affaires.">
+          <legend class="question-legend" tabindex="-1">
+            <span class="dimension-chip dim-finance">Finance · 1/4</span>
+            <span class="question-title">À quelle fréquence enregistrez-vous vos ventes et vos dépenses ?</span>
+          </legend>
+          <p class="question-help">Cahier, carnet, téléphone ou tableur : tous les supports comptent.</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="bookkeeping" value="0"><span class="option-indicator"></span><span>Jamais, je retiens de tête</span></label>
+            <label class="option"><input type="radio" name="bookkeeping" value="30"><span class="option-indicator"></span><span>De temps en temps</span></label>
+            <label class="option"><input type="radio" name="bookkeeping" value="70"><span class="option-indicator"></span><span>Chaque semaine</span></label>
+            <label class="option"><input type="radio" name="bookkeeping" value="100"><span class="option-indicator"></span><span>Chaque jour</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Question 5 — choix unique -->
+        <fieldset class="question" data-dimension="finance" data-weight="2" hidden
+          data-strength="Vous connaissez votre bénéfice : vous pilotez l’activité avec des chiffres."
+          data-weakness="Le bénéfice mensuel n’est pas connu avec précision."
+          data-action-title="Calculer votre bénéfice chaque mois"
+          data-action-text="En fin de mois, faites le total des ventes moins toutes les dépenses, y compris votre propre rémunération, puis comparez d’un mois à l’autre.">
+          <legend class="question-legend" tabindex="-1">
+            <span class="dimension-chip dim-finance">Finance · 2/4</span>
+            <span class="question-title">Connaissez-vous le bénéfice réalisé le mois dernier ?</span>
+          </legend>
+          <p class="question-help">Bénéfice = ventes − toutes les dépenses (achats, loyer, salaires, transport…).</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="profit" value="0"><span class="option-indicator"></span><span>Non</span></label>
+            <label class="option"><input type="radio" name="profit" value="50"><span class="option-indicator"></span><span>Approximativement</span></label>
+            <label class="option"><input type="radio" name="profit" value="100"><span class="option-indicator"></span><span>Oui, avec un calcul précis</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Question 6 — tranche -->
+        <fieldset class="question" data-dimension="finance" data-weight="2" hidden
+          data-strength="Votre trésorerie offre une marge de sécurité face aux imprévus."
+          data-weakness="Trésorerie très tendue : le moindre imprévu peut bloquer l’activité."
+          data-action-title="Constituer une réserve de trésorerie"
+          data-action-text="Mettez de côté un pourcentage fixe de chaque vente (par exemple 5 %) sur un compte séparé, jusqu’à couvrir un mois de charges.">
+          <legend class="question-legend" tabindex="-1">
+            <span class="dimension-chip dim-finance">Finance · 3/4</span>
+            <span class="question-title">Si vos ventes s’arrêtaient demain, combien de temps pourriez-vous payer vos charges ?</span>
+          </legend>
+          <p class="question-help">Loyer, salaires, fournisseurs… avec l’argent disponible aujourd’hui.</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="cash_runway" value="0"><span class="option-indicator"></span><span>Moins d’une semaine</span></label>
+            <label class="option"><input type="radio" name="cash_runway" value="40"><span class="option-indicator"></span><span>1 à 4 semaines</span></label>
+            <label class="option"><input type="radio" name="cash_runway" value="75"><span class="option-indicator"></span><span>1 à 3 mois</span></label>
+            <label class="option"><input type="radio" name="cash_runway" value="100"><span class="option-indicator"></span><span>Plus de 3 mois</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Question 7 — valeur numérique (convertie en points par paliers dans score.js) -->
+        <fieldset class="question" data-dimension="finance" data-weight="3" data-readiness="3" hidden
+          data-strength="Vous disposez d’un historique de ventes vérifiable, élément clé pour obtenir un financement."
+          data-weakness="Peu ou pas d’historique de ventes vérifiable, alors que c’est la première pièce demandée pour un crédit."
+          data-action-title="Construire un historique de ventes vérifiable"
+          data-action-text="Faites passer un maximum d’encaissements par Mobile Money ou par la banque : chaque paiement laisse une trace datée, sans effort supplémentaire.">
+          <legend class="question-legend" tabindex="-1">
+            <span class="dimension-chip dim-finance">Finance · 4/4</span>
+            <span class="question-title">Sur combien de mois pouvez-vous prouver vos ventes ?</span>
+          </legend>
+          <p class="question-help">Cahier de ventes, factures, relevés Mobile Money ou bancaires… Entrez 0 si vous n’avez aucune trace.</p>
+          <div class="number-wrap">
+            <input type="number" name="sales_history" class="number-input" min="0" max="240" step="1"
+                   inputmode="numeric" aria-label="Nombre de mois d’historique de ventes">
+            <span class="number-unit" aria-hidden="true">mois</span>
+          </div>
+          <div class="chips">
+            <button type="button" class="chip" data-value="0">Aucune</button>
+            <button type="button" class="chip" data-value="6">6 mois</button>
+            <button type="button" class="chip" data-value="12">1 an</button>
+            <button type="button" class="chip" data-value="24">2 ans</button>
+          </div>
+        </fieldset>
+
+        <!-- -------------------------- DIGITALISATION -------------------------- -->
+
+        <!-- Question 8 — choix multiple -->
+        <fieldset class="question" data-dimension="digitalisation" data-weight="2" data-readiness="1" hidden
+          data-strength="Vos clients peuvent payer par des moyens numériques."
+          data-weakness="Paiements essentiellement en espèces : risque de perte et aucune trace des ventes."
+          data-action-title="Accepter le Mobile Money"
+          data-action-text="Affichez votre numéro marchand Mobile Money en caisse et sur WhatsApp : c’est le moyen le plus simple d’encaisser sans espèces et de garder une trace de chaque vente.">
+          <legend class="question-legend" tabindex="-1">
+            <span class="dimension-chip dim-digitalisation">Digitalisation · 1/3</span>
+            <span class="question-title">Comment vos clients peuvent-ils vous payer ?</span>
+          </legend>
+          <p class="question-help">Cochez tous les moyens de paiement que vous acceptez.</p>
+          <div class="options">
+            <label class="option"><input type="checkbox" name="payments" value="10"><span class="option-indicator"></span><span>Espèces</span></label>
+            <label class="option"><input type="checkbox" name="payments" value="45"><span class="option-indicator"></span><span>Mobile Money (MTN MoMo, Moov Money, Celtiis Cash)</span></label>
+            <label class="option"><input type="checkbox" name="payments" value="20"><span class="option-indicator"></span><span>Virement ou chèque</span></label>
+            <label class="option"><input type="checkbox" name="payments" value="25"><span class="option-indicator"></span><span>Carte bancaire (TPE ou lien de paiement)</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Question 9 — choix unique -->
+        <fieldset class="question" data-dimension="digitalisation" data-weight="2" hidden
+          data-strength="Vos canaux numériques servent à attirer et à suivre vos clients."
+          data-weakness="WhatsApp et les réseaux sociaux sont peu exploités pour vendre."
+          data-action-title="Passer à WhatsApp Business"
+          data-action-text="Installez WhatsApp Business (gratuit), créez un catalogue avec photos et prix, et activez le message d’accueil automatique.">
+          <legend class="question-legend" tabindex="-1">
+            <span class="dimension-chip dim-digitalisation">Digitalisation · 2/3</span>
+            <span class="question-title">Comment utilisez-vous WhatsApp et Internet pour vendre ?</span>
+          </legend>
+          <p class="question-help">Choisissez la situation la plus proche de la vôtre.</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="online" value="0"><span class="option-indicator"></span><span>Je ne les utilise pas pour mon activité</span></label>
+            <label class="option"><input type="radio" name="online" value="30"><span class="option-indicator"></span><span>WhatsApp personnel, sans organisation particulière</span></label>
+            <label class="option"><input type="radio" name="online" value="70"><span class="option-indicator"></span><span>WhatsApp Business (catalogue, profil, messages automatiques)</span></label>
+            <label class="option"><input type="radio" name="online" value="100"><span class="option-indicator"></span><span>WhatsApp Business + réseaux sociaux ou site web animés régulièrement</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Question 10 — échelle de 1 à 5 (1 = 0 point … 5 = 100 points) -->
+        <fieldset class="question" data-dimension="digitalisation" data-weight="2" hidden
+          data-strength="Votre gestion quotidienne s’appuie sur des outils numériques."
+          data-weakness="La gestion repose surtout sur le papier ou la mémoire du dirigeant."
+          data-action-title="Numériser une première tâche de gestion"
+          data-action-text="Choisissez une seule tâche (stock ou factures) et gérez-la sur téléphone pendant un mois avant d’aller plus loin.">
+          <legend class="question-legend" tabindex="-1">
+            <span class="dimension-chip dim-digitalisation">Digitalisation · 3/3</span>
+            <span class="question-title">Quelle part de votre gestion (stock, factures, comptes) se fait sur un outil numérique ?</span>
+          </legend>
+          <p class="question-help">Téléphone, application, tableur ou logiciel.</p>
+          <div class="scale-steps">
+            <label class="scale-step"><input type="radio" name="digital_tools" value="0" aria-label="1 sur 5 : aucune"><span>1</span></label>
+            <label class="scale-step"><input type="radio" name="digital_tools" value="25" aria-label="2 sur 5 : un peu"><span>2</span></label>
+            <label class="scale-step"><input type="radio" name="digital_tools" value="50" aria-label="3 sur 5 : la moitié"><span>3</span></label>
+            <label class="scale-step"><input type="radio" name="digital_tools" value="75" aria-label="4 sur 5 : la majorité"><span>4</span></label>
+            <label class="scale-step"><input type="radio" name="digital_tools" value="100" aria-label="5 sur 5 : tout"><span>5</span></label>
+          </div>
+          <div class="scale-ends" aria-hidden="true">
+            <span>1 = tout sur papier ou de tête</span>
+            <span>5 = tout est numérique</span>
+          </div>
+        </fieldset>
+
+        <p id="error-message" class="field-error" role="alert"></p>
+      </main>
+
+      <div class="question-footer">
+        <div class="container button-row button-row-split">
+          <button type="button" id="btn-previous" class="btn btn-secondary">Accueil</button>
+          <button type="submit" id="btn-next" class="btn btn-primary">Suivant</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- =====================================================================
+       ÉCRAN 3 — RÉSULTAT
+       Les éléments avec un id sont remplis par score.js.
+       ===================================================================== -->
+  <div id="screen-result" class="screen" hidden>
+    <header class="brand-bar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span class="brand-name">ALODO <strong>MPME</strong></span>
+      </div>
+      <span class="brand-subtitle">Résultat du diagnostic</span>
+    </header>
+
+    <main class="container container-wide result-layout">
+      <section id="score-hero" class="score-hero">
+        <div class="score-circle" aria-hidden="true">
+          <span class="score-circle-text"><span id="score-circle-value">0</span><small>/100</small></span>
+        </div>
+        <div class="score-hero-text">
+          <p id="result-company" class="eyebrow">Votre entreprise</p>
+          <h1 id="result-title" class="result-title" tabindex="-1">
+            Score ALODO MPME : <span id="global-score" class="nowrap">0/100</span>
+          </h1>
+          <p id="level-badge" class="level-badge"></p>
+          <p id="result-summary" class="result-summary"></p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Score par dimension</h2>
+        <ul class="dimension-bars">
+          <li id="dim-formalisation" class="dimension-bar">
+            <div class="dimension-bar-head"><span>Formalisation</span><span class="dimension-bar-score"><strong>0</strong>/100</span></div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <p class="dimension-bar-level"></p>
+          </li>
+          <li id="dim-finance" class="dimension-bar">
+            <div class="dimension-bar-head"><span>Finance</span><span class="dimension-bar-score"><strong>0</strong>/100</span></div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <p class="dimension-bar-level"></p>
+          </li>
+          <li id="dim-digitalisation" class="dimension-bar">
+            <div class="dimension-bar-head"><span>Digitalisation</span><span class="dimension-bar-score"><strong>0</strong>/100</span></div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <p class="dimension-bar-level"></p>
+          </li>
+        </ul>
+        <p id="finance-alert" class="alert" hidden>
+          Score Finance plafonné à 50 : tant que l’argent personnel et professionnel est mélangé,
+          les chiffres financiers ne reflètent pas la réalité de l’entreprise.
+        </p>
+      </section>
+
+      <div class="findings-grid">
+        <section class="card">
+          <h2 class="section-title">Points forts</h2>
+          <ul id="strengths-list" class="finding-list finding-strength"></ul>
+        </section>
+        <section class="card">
+          <h2 class="section-title">Points à améliorer</h2>
+          <ul id="weaknesses-list" class="finding-list finding-weakness"></ul>
+        </section>
+      </div>
+
+      <section class="card card-highlight">
+        <h2 class="section-title">Vos actions prioritaires</h2>
+        <p class="section-lead">Classées selon leur impact sur votre maturité. Commencez par la première.</p>
+        <ol id="actions-list" class="recommendations"></ol>
+      </section>
+
+      <section class="indicator-card">
+        <div class="indicator-head">
+          <div>
+            <p class="eyebrow">Indicateur complémentaire</p>
+            <h2 class="indicator-title">Préparation au financement</h2>
+          </div>
+          <p class="indicator-score"><strong id="readiness-score">0</strong>/100</p>
+        </div>
+        <p id="readiness-status" class="indicator-status"></p>
+        <p class="indicator-description">
+          Ce qu’un organisme de financement regarderait en premier : existence légale, documents,
+          séparation des comptes, historique et traçabilité des ventes. Calculé à partir de vos réponses,
+          sans question supplémentaire.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Et ensuite ?</h2>
+        <p class="section-lead">
+          Ce diagnostic est la première étape. Dans le programme ALODO MPME, il sert de base
+          à l’analyse, au rapport détaillé puis à l’accompagnement.
+        </p>
+        <div class="timeline-scroll">
+          <ol class="timeline">
+            <li class="timeline-step is-done"><span class="timeline-dot"></span>Candidature</li>
+            <li class="timeline-step is-done"><span class="timeline-dot"></span>Sélection</li>
+            <li class="timeline-step is-done"><span class="timeline-dot"></span>Diagnostic</li>
+            <li class="timeline-step is-active" aria-current="step"><span class="timeline-dot"></span>Analyse<span class="timeline-badge">Prochaine étape</span></li>
+            <li class="timeline-step"><span class="timeline-dot"></span>Rapport</li>
+            <li class="timeline-step"><span class="timeline-dot"></span>Recommandations</li>
+            <li class="timeline-step"><span class="timeline-dot"></span>Accompagnement</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="result-actions no-print">
+        <button type="button" id="btn-print" class="btn btn-secondary">Enregistrer en PDF</button>
+        <button type="button" id="btn-edit" class="btn btn-secondary">Modifier mes réponses</button>
+        <button type="button" id="btn-restart" class="btn btn-ghost">Refaire le diagnostic</button>
+      </section>
+
+      <p class="disclaimer">
+        Résultat indicatif, calculé à partir de vos déclarations. Il ne constitue ni un audit ni une décision de financement.
+      </p>
+    </main>
+  </div>
+
+  <noscript>
+    <p class="noscript">Ce diagnostic a besoin de JavaScript pour calculer votre score. Activez-le dans les réglages de votre navigateur.</p>
+  </noscript>
+
+  <!-- score.js doit être chargé avant app.js, qui utilise ses fonctions -->
+  <script src="js/score.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
