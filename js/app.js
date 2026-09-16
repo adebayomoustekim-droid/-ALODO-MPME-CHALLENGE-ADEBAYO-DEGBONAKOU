@@ -203,6 +203,7 @@ form.addEventListener('submit', (event) => {
 
   if (getQuestionScore(question) === null) {
     errorMessage.textContent = getErrorMessage(question);
+    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     return;
   }
   if (currentIndex < questions.length - 1) {

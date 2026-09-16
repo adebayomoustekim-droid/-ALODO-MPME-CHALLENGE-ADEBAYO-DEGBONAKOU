@@ -92,7 +92,8 @@ function calculateResults(questions) {
   }
 
   // Règle de cohérence : argent mélangé → les chiffres financiers ne sont pas fiables
-  const moneyMixed = document.querySelector('input[name="money_separation"][value="0"]').checked;
+  const moneyInput = document.querySelector('input[name="money_separation"][value="0"]');
+  const moneyMixed = moneyInput ? moneyInput.checked : false;
   if (moneyMixed) {
     dimensionScores.finance = Math.min(dimensionScores.finance, FINANCE_CAP);
   }
@@ -220,7 +221,10 @@ function displayResults(result, companyName) {
     `Formalisation : ${result.dimensionScores.formalisation} · Finance : ${result.dimensionScores.finance} · Digitalisation : ${result.dimensionScores.digitalisation}`,
     result.summary,
   ].join('\n');
-  document.getElementById('btn-share').href = 'https://wa.me/?text=' + encodeURIComponent(shareText);
+  const btnShare = document.getElementById('btn-share');
+  if (btnShare) {
+    btnShare.href = 'https://wa.me/?text=' + encodeURIComponent(shareText);
+  }
 }
 
 // Crée un élément avec une classe et un texte.
